@@ -4,9 +4,10 @@ block content_head
 block content_body
   +js('index.js')
 block content
-  h1= title
-  .container
-    table.table#cryptotable
+  h1 Cryptocurrency Market Cap
+  br
+  .table-response
+    table.table.table-hover.table-sm#cryptotable
       thead.thead-dark
         th #
         th Name
@@ -20,7 +21,7 @@ block content
       tbody
         each coin in ticker
           tr
-            td= coin.rank
+            th= coin.rank
             td= coin.name
             td= coin.market_cap_usd
             td= coin.price_usd

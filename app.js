@@ -33,7 +33,7 @@ mongoose.connect(dbURL, {
       password: 'bA7bOh3W8vJA4nw9dw8GvbIVpDIsbvS2WzoROWkkwS3yLp8BoaL0V2muzKPmTbSgaU87omBAwQmTspbN8OFqhw=='
     }
 })
-.then(() => console.log(`Successfully connected to ${dbURL}!`))
+.then(() => console.log(`Connected to ${dbURL}`))
 .catch((err) => console.error(err));
 
 // catch 404 and forward to error handler
