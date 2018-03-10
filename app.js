@@ -24,6 +24,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 
+let portfolio = require('./routes/portfolio');
+app.use('/portfolio', portfolio);
+
 //connect to database using mongoose
 const mongoose = require('mongoose');
 const dbURL = 'mongodb://mycointracker.documents.azure.com:10255/?ssl=true&replicaSet=globaldb';

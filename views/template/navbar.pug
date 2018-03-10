@@ -2,7 +2,7 @@ mixin navitem(url, name)
   li.nav-item
     a.nav-link(href=url)= name
 mixin header
-  nav.navbar.navbar-expand-sm.fixed-top.navbar-dark.bg-primary
+  nav.navbar.navbar-expand-sm.fixed-top.navbar-dark.bg-purple
     //Brand
     a.navbar-brand(href='/') MyCoinTracker
     //Toggler
@@ -14,4 +14,4 @@ mixin header
         +navitem('/portfolio', 'Portfolio')
       form.form-inline.my-2.my-lg-0(method="GET" action='/search')
         input.form-control.mr-sm-2(type="search" placeholder="Search")
-        button.btn.btn-secondary.my-2.my-sm-0(type="submit") Search
+        button.btn.btn-purple.my-2.my-sm-0(type="submit" style='background-color:#651FFF!important') Search
