@@ -1,5 +1,31 @@
-extends layout
-
+extends ./template/layout
+include ./template/mixins
+block content_head
+block content_body
+  +js('index.js')
 block content
   h1= title
-  p Welcome to #{title}
+  .container
+    table.table#cryptotable
+      thead.thead-dark
+        th #
+        th Name
+        th Market Cap
+        th Price (USD)
+        th Price (BTC)
+        th Volume (24h)
+        th Change (7d)
+        th Change (24h)
+        th Change (1h)
+      tbody
+        each coin in ticker
+          tr
+            td= coin.rank
+            td= coin.name
+            td= coin.market_cap_usd
+            td= coin.price_usd
+            td= coin.price_btc
+            td= coin["24h_volume_usd"]
+            td.change= `${coin.percent_change_7d}%`
+            td.change= `${coin.percent_change_24h}%`
+            td.change= `${coin.percent_change_1h}%`

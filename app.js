@@ -24,6 +24,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 
+//connect to database using mongoose
+const mongoose = require('mongoose');
+const dbURL = 'mongodb://mycointracker.documents.azure.com:10255/?ssl=true&replicaSet=globaldb';
+mongoose.connect(dbURL, {
+    auth: {
+      user: 'mycointracker',
+      password: 'bA7bOh3W8vJA4nw9dw8GvbIVpDIsbvS2WzoROWkkwS3yLp8BoaL0V2muzKPmTbSgaU87omBAwQmTspbN8OFqhw=='
+    }
+})
+.then(() => console.log(`Successfully connected to ${dbURL}!`))
+.catch((err) => console.error(err));
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
