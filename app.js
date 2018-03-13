@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -26,6 +27,12 @@ app.use('/users', users);
 
 let portfolio = require('./routes/portfolio');
 app.use('/portfolio', portfolio);
+
+app.use(session({
+  secret: 'be cool',
+  resave: true,
+  saveUninitialized: false
+}));
 
 //connect to database using mongoose
 const mongoose = require('mongoose');
