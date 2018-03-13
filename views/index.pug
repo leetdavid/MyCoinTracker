@@ -21,7 +21,7 @@ block content
       tbody
         each coin in ticker
           tr
-            th= coin.rank
+            th: a(href='https://coinmarketcap.com/currencies/'+coin.id)= coin.rank
             td= coin.name
             td= coin.market_cap_usd
             td= coin.price_usd
