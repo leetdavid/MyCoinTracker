@@ -22,7 +22,7 @@ block content
         each coin in ticker
           tr
             th: a(href='https://coinmarketcap.com/currencies/'+coin.id)= coin.rank
-            td= coin.name
+            td: a(href='https://coinmarketcap.com/currencies/'+coin.id)= coin.name
             td= coin.market_cap_usd
             td= coin.price_usd
             td= coin.price_btc
