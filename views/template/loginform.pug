@@ -1,0 +1,40 @@
+ul.nav.nav-tabs#loginTabs(role='tablist')
+  li.nav-item
+    a.nav-link.active#login-tab(data-toggle='tab' href='#login' role='tab' aria-controls='login' aria-selected='true') Login
+  li.nav-item
+    a.nav-link#register-tab(data-toggle='tab' href='#register' role='tab' aria-controls='register' aria-selected='true') Register
+.tab-content#loginTabContent
+  .tab-pane.fade.show.active#login(role='tabpanel' aria-labelledby='login-tab')
+    //Login Form
+    br
+    form(method='POST' action='/users/login')
+      .form-group
+        label.col-form-label(for='logemail') Email
+        input.form-control(type='text' name='logemail' required)
+      .form-group
+        label.col-form-label(for='logpassword') Password
+        input.form-control(type='password' name='logpassword' required)
+      .form-group
+        .row
+          .col-5
+            button.btn.btn-primary(type='submit') Login
+          .col-6
+            .form-check.form-check-inline.float-right
+              input.form-check-input(type='checkbox' checked='checked' name='remember') 
+              label.form-check-label(for='remember') Remember Me
+          .col-1
+  .tab-pane.fade#register(role='tabpanel' aria-labelledby='register-tab')
+    //Register Form
+    br
+    form(method='POST' action='/users/login')
+      .form-group
+        label.col-form-label(for='email') Email
+        input.form-control(type='text' name='email' required)
+      .form-group
+        label.col-form-label(for='password') Password
+        input.form-control(type='password' name='password' required)
+      .form-group
+        label.col-form-label(for='passwordConf') Confirm Password
+        input.form-control(type='password' name='passwordConf' required)
+      .form-group
+        button.btn.btn-primary(type='submit') Register

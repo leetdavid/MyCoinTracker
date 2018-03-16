@@ -11,7 +11,23 @@ mixin header
     //Links
     #nav-content.collapse.navbar-collapse
       ul.navbar-nav.mr-auto.mt-2.mt-lg-0
+        li.nav-item
+          a.nav-link(data-toggle='modal' data-target='#loginModal' href='#') Login
         +navitem('/portfolio', 'Portfolio')
       form.form-inline.my-2.my-lg-0(method="GET" action='/search')
         input.form-control.mr-sm-2(type="search" placeholder="Search")
         button.btn.btn-purple.my-2.my-sm-0(type="submit" style='background-color:#651FFF!important') Search
+
+  .modal.fade#loginModal(role='dialog')
+    .modal-dialog
+      //Modal Content
+      .modal-content
+        .modal-header
+          h5.modal-title#loginModalLabel Login
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') &times;
+        .modal-body
+          include loginform
+        .modal-footer
+          button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+          

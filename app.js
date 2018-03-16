@@ -6,8 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+
+
 
 var app = express();
 
@@ -22,11 +22,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Routes
+var index = require('./routes/index');
 app.use('/', index);
+
+var users = require('./routes/users');
 app.use('/users', users);
 
 let portfolio = require('./routes/portfolio');
 app.use('/portfolio', portfolio);
+
+//End of routes
 
 app.use(session({
   secret: 'be cool',

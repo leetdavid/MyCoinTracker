@@ -5,16 +5,22 @@ let User = require('../models/User');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  res.redirect('/user/login');
 });
 
-router.post('/', (req, res, next) => {
+router.get('/login', (req, res, next) => {
+  res.render('login', {
+    title: 'Login'
+  });
+})
+
+router.post('/login', (req, res, next) => {
 
   if(req.body.password !== req.body.passwordConf){
     let error = new Error('Passwords do not match.');
-    err.status = 400;
+    error.status = 400;
     res.send('passwords do not match');
-    return next(err);
+    return next(error);
   }
 
   if(req.body.email &&
