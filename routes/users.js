@@ -5,16 +5,27 @@ let User = require('../models/User');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.redirect('/user/login');
+  res.redirect('/');
 });
 
-router.get('/login', (req, res, next) => {
-  res.render('login', {
-    title: 'Login'
-  });
-})
-
 router.post('/login', (req, res, next) => {
+  if(req.body.logemail && req.body.logpassword){
+    User.authenticate(req.body.logemail, req.body.logpassword, (error, user) => {
+      if(error || !user){
+        let err = new Error('Wrong email or password.');
+        err.status = 401;
+        return next(err);
+      } 
+      else {
+        let err = new Error('All fields are required.');
+        err.status = 400;
+        return next(err);
+      }
+    });
+  }
+});
+
+router.post('/register', (req, res, next) => {
 
   if(req.body.password !== req.body.passwordConf){
     let error = new Error('Passwords do not match.');
@@ -39,21 +50,6 @@ router.post('/login', (req, res, next) => {
       if(err) return next(err);
       else {
         res.redirect('/portfolio');
-      }
-    });
-
-    //I am guessing it's when ur trying to login?
-  } else if(req.body.logemail && req.body.logpassword){
-    User.authenticate(req.body.logemail, req.body.logpassword, (error, user) => {
-      if(error || !user){
-        let err = new Error('Wrong email or password.');
-        err.status = 401;
-        return next(err);
-      } 
-      else {
-        let err = new Error('All fields are required.');
-        err.status = 400;
-        return next(err);
       }
     });
   }
