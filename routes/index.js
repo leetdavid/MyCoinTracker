@@ -43,7 +43,7 @@ router.get('/', (req, res, next) => {
         coin['24h_volume_usd'] = shortify(coin['24h_volume_usd'], 2);
       }
 
-      res.render('index', { title: 'Cryptocurrency Market Capitalizations | My Coin Tracker' , ticker: ticker});
+      res.render('index', { title: 'Cryptocurrency Market Capitalizations' , ticker: ticker});
     })
     .catch(err => {
       console.log(err);

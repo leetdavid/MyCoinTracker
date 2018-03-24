@@ -23,10 +23,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Routes
-var index = require('./routes/index');
+let index = require('./routes/index');
 app.use('/', index);
 
-var users = require('./routes/users');
+let users = require('./routes/users');
 app.use('/users', users);
 
 let portfolio = require('./routes/portfolio');

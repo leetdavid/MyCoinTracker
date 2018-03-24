@@ -1,0 +1,9 @@
+extends ./template/layout
+include ./template/mixins
+
+block content_head
+block content_body
+block content
+  h1= title
+  br
+  include #{string}
