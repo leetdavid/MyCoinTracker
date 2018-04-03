@@ -2,3 +2,5 @@ extends ./template/layout
 
 block content
   h1 Portfolio
+  if(user)
+    h3 Welcome #{user.email}

@@ -5,9 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-
-
-
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+const mongoose = require('mongoose');
 
 var app = express();
 
@@ -34,23 +34,30 @@ app.use('/portfolio', portfolio);
 
 //End of routes
 
+
+
+//connect to database using mongoose
+const dbConfig = require('./config/database.js');
+mongoose.connect(dbConfig.localURL)
+.then(() => console.log(`Connected to ${dbConfig.localURL}`))
+.catch((err) => console.error(err));
+
 app.use(session({
-  secret: 'be cool',
+  secret: 'long cat is long',
   resave: true,
   saveUninitialized: false
 }));
 
-//connect to database using mongoose
-const mongoose = require('mongoose');
-const dbURL = 'mongodb://mycointracker.documents.azure.com:10255/?ssl=true&replicaSet=globaldb';
-mongoose.connect(dbURL, {
-    auth: {
-      user: 'mycointracker',
-      password: 'bA7bOh3W8vJA4nw9dw8GvbIVpDIsbvS2WzoROWkkwS3yLp8BoaL0V2muzKPmTbSgaU87omBAwQmTspbN8OFqhw=='
-    }
-})
-.then(() => console.log(`Connected to ${dbURL}`))
-.catch((err) => console.error(err));
+
+
+//Initialize Passport.js
+app.use(passport.initialize());
+app.use(passport.session());
+
+var User = require('./models/User');
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

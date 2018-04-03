@@ -9,11 +9,11 @@ ul.nav.nav-tabs#loginTabs(role='tablist')
     br
     form(method='POST' action='/users/login')
       .form-group
-        label.col-form-label(for='logemail') Email
-        input.form-control(type='text' name='logemail' required)
+        label.col-form-label(for='username') Email
+        input.form-control(type='text' name='username' required)
       .form-group
-        label.col-form-label(for='logpassword') Password
-        input.form-control(type='password' name='logpassword' required)
+        label.col-form-label(for='password') Password
+        input.form-control(type='password' name='password' required)
       .form-group
         .row
           .col-5
@@ -28,8 +28,8 @@ ul.nav.nav-tabs#loginTabs(role='tablist')
     br
     form(method='POST' action='/users/register')
       .form-group
-        label.col-form-label(for='email') Email
-        input.form-control(type='text' name='email' required)
+        label.col-form-label(for='username') Email
+        input.form-control(type='text' name='username' required)
       .form-group
         label.col-form-label(for='password') Password
         input.form-control(type='password' name='password' required)
