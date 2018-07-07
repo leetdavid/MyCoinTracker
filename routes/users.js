@@ -5,6 +5,13 @@ let passport = require('passport');
 let mongoose = require('mongoose');
 let User = require('../models/User');
 
+router.get('/success', (req, res) => res.send("WELCOME "+req.query.username));
+router.get('/error', (req, res) => res.send("Error Logging in"));
+
+passport.serializeUser((user, cb) => cb(null, user.id));
+passport.deserializeUser((id, cb) => User.findById(id, (err, user) => cb(err,user)));
+
+
 router.post('/register', (req, res, next) => {
   User.register(
     new User({username: req.body.email, password: req.body.password}),

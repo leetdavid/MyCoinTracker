@@ -4,3 +4,27 @@ block content
   h1 Portfolio
   if(user)
     h3 Welcome #{user.email}
+
+  //.table-responsive
+  .table
+    table.table.table-hover.table-sm
+      thead.thead-dark
+        tr
+          th(scope="col") Code
+          th(scope="col") Name
+          th(scope="col") Amount
+          th(scope="col") Price (BTC)
+          th(scope="col") Price (USD)
+      tbody
+        tr
+          td BTC
+          td Bitcoin
+          td 0.1216234
+          td 0.1216234
+          td $20.0
+        tr
+          td ETH
+          td Ethereum
+          td 0.09600825
+          td 0.1216234
+          td $20.0
